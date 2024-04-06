@@ -1,32 +1,16 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-//to insert an element into the stack
-void push(/*item*/);
-
-//to remove the top element from the stack
-void pop();
-
-//view the top element from the stack
-void peek();
-
-//returns the top element of the stack
-void top();
-
-//returns true if stack is empty, else is false
-void isEmpty();
-
-//returns the size of the stack
-void size();
-
-//creates a stack
+struct stackNode* createNode(int data);
+void push(struct stackNode **top, int data);
 struct stackNode* stack();
-
-//print all elements from the stack
-void display();
-
+void display(struct stackNode *top);
+void destroy(struct stackNode *top);
+void pop(struct stackNode **top);
+int isEmpty(struct stackNode *top);
 
 //represents a 'book' in the 'stack of books'
-typedef struct stackNode*
+typedef struct stackNode
 {
 	int data;
 	struct stackNode *next;
@@ -34,29 +18,76 @@ typedef struct stackNode*
 
 int main()
 {
-	stack();
+	struct stackNode *top = stack();
+	push(&top, 0);
+	push(&top, 0);
+	display(top);
+	pop(&top);
+	pop(&top);
+	display(top);
+	if(isEmpty(top))
+		printf("empty\n");
+	destroy(top);
 }
 
+//creates a new stack
 struct stackNode* stack()
 {
-	struct stackNode *top = (struct stackNode*)malloc(sizeof(struct stackNode*));
+	struct stackNode *top = (struct stackNode*)malloc(sizeof(struct stackNode));
+	top->next = NULL;
+	top->data = -1;
 	return top;
 }
 
-void push(struct stackNode *top)
+//pushs a new node on top of the stack
+void push(struct stackNode **top, int data)
 {
-	struct stackNode *ptr = (struct stackNode*)malloc(sizeof(struct stackNode*));
-	ptr->next = top;
-	top = ptr;
-	free(ptr);
+	if(*top == NULL)
+		return;
+
+	struct stackNode *ptr = (struct stackNode*)malloc(sizeof(struct stackNode));
+	ptr->data = data;	
+	ptr->next = *top;
+
+	*top = ptr;
 }
 
+//shows contents of stack
 void display(struct stackNode *top)
 {
 	struct stackNode *ptr = top;
 	while(ptr != NULL)
 	{
-		printf("%p(%p)", top, top->next);
+		printf("%p(%d, %p)\n", ptr, ptr->data, ptr->next);
+		ptr = ptr->next;
 	}
 }
 
+//destroys stack and frees memory
+void destroy(struct stackNode *top)
+{
+	struct stackNode *behindTop = top;
+	while(top != NULL)
+	{
+		top = top->next;
+		free(behindTop);
+		behindTop = top;
+	}
+	free(top);
+}
+
+//destroys the top of the stack
+void pop(struct stackNode **top)
+{
+	struct stackNode *temp = *top;
+	*top = (*top)->next;
+	free(temp);
+}
+
+//returns 1 if stack is empty, returns 0 if not
+int isEmpty(struct stackNode *top)
+{
+	if(top->next == NULL)
+		return 1;
+	return 0;
+}
