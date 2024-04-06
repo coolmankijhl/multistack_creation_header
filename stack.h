@@ -4,7 +4,7 @@
 //represents a 'book' in the 'stack of books'
 typedef struct stackNode
 {
-	int data;
+	//insert your data to be stored here
 	struct stackNode *next;
 } stackNode;
 
