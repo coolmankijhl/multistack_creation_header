@@ -1,7 +1,7 @@
 # stack_implementation  
 Built a .h file capable of multistacking using singly linked lists.  
-This program is meant to be reusable as in the stackNode struct should be edited to contain what data you need it to.
-Contains functions to create and edit multiple stacks.
+This program is meant to be reusable as in the stackNode struct should be edited to contain what data you need it to.  
+Contains functions to create and edit multiple stacks.  
 
 struct stack()  
 Creates a new stack
