@@ -9,6 +9,7 @@ void destroy(struct stackNode *top);
 void pop(struct stackNode **top);
 int isEmpty(struct stackNode *top);
 int size(struct stackNode *top);
+void peek(struct stackNode *top);
 
 //represents a 'book' in the 'stack of books'
 typedef struct stackNode
@@ -105,3 +106,7 @@ int size(struct stackNode *top)
 	return count;
 }
 
+void peek(struct stackNode *top)
+{
+	printf("%p(%d, %p)\n", top, top->data, top->next);
+}
