@@ -8,8 +8,8 @@ void main()
 	if(isEmpty(top))
 		printf("The stack is currently empty!\n");
 
-	push(&top, 1);
-	push(&top, 2);
+	push(&top);
+	push(&top);
 	
 	//'displays' the contents of the stack	
 	display(top);
