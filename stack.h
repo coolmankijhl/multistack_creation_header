@@ -71,6 +71,7 @@ int isEmpty(struct stackNode *top)
 	return 0;
 }
 
+//returns size of the stack
 int size(struct stackNode *top)
 {
 	int count = 0;
@@ -82,6 +83,7 @@ int size(struct stackNode *top)
 	return count;
 }
 
+//displays pointer information for the top of the stack
 void peek(struct stackNode *top)
 {
 	printf("%p(%p)\n", top, top->next);
