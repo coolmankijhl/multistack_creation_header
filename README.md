@@ -2,27 +2,28 @@
 Built a .h file capable of multistacking using singly linked lists.  
 This program is meant to be reusable as in the stackNode struct should be edited to contain what data you need it to.  
 Contains functions to create and edit multiple stacks.  
+```c
+struct stackNode* stack()
+```
+Creates a new stack using ```malloc()```, contains ```int index``` and ```struct stack* next```, any other variables *must* be added in ```stack.h```.  
+Note: Bottom of the stack has an index of 0.
 
-struct stack()  
-Creates a new stack
-  
+```c
 void push(struct stackNode** top)  
-Pushes a new node on top of the stack, does not assign data to given node, top is the current top of the node
+```
+Creates a new node on top of stack using ```malloc()```, index is set to previous nodes index plus one.
   
-void display(struct stackNode* top)  
-Uses printf to print the pointer to the node and the pointer to the next node of every node in the stack
-  
+```c
 void destroy(struct stackNode *top)  
-Frees memory of stack top-down
+```
+Frees memory of the stack from top-down.
   
-void pop(struct stackNode **top)  
-Frees the memory of the top of the stack, assigns new top next node, if there is no next node, it will free the stack
+```c 
+void pop(struct stackNode **top)
+```
+Destroys the top of the stack and frees memory, top is reassigned to next node down.
   
-int isEmpty(struct stackNode *top)  
-Returns 1 if the top points to NULL, returns 0 otherwise
-
+```c
 int size(stuct stackNode *top)  
-Returns size of the stack
-
-void peek(struct stackNode *top)
-Uses printf to print the pointer to the node and the pointer to the next node of the top of the stack
+```
+Returns the index of the top plus one.
