@@ -4,7 +4,7 @@
 // Node definition
 typedef struct stackNode
 {
-	//insert your data to be stored here
+	int data;
 	struct stackNode *next;
 	int index;
 } stackNode;
@@ -21,12 +21,9 @@ struct stackNode* stack()
 // Creates a new node on top of the stack
 void push(struct stackNode **top)
 {
-	if(*top == NULL)
-		return;
-
 	struct stackNode *ptr = (struct stackNode*)malloc(sizeof(struct stackNode));
-	ptr->next = *top;
 	ptr->index = ((*top)->index) + 1;
+	ptr->next = *top;
 
 	*top = ptr;
 }
