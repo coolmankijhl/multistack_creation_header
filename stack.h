@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//represents a 'book' in the 'stack of books'
+// Node definition
 typedef struct stackNode
 {
 	//insert your data to be stored here
@@ -9,7 +9,7 @@ typedef struct stackNode
 	int index;
 } stackNode;
 
-//creates a new stack
+// Creates a new stack
 struct stackNode* stack()
 {
 	struct stackNode *top = (struct stackNode*)malloc(sizeof(struct stackNode));
@@ -18,7 +18,7 @@ struct stackNode* stack()
 	return top;
 }
 
-//pushs a new node on top of the stack
+// Creates a new node on top of the stack
 void push(struct stackNode **top)
 {
 	if(*top == NULL)
@@ -31,18 +31,7 @@ void push(struct stackNode **top)
 	*top = ptr;
 }
 
-//shows contents of stack
-void display(struct stackNode *top)
-{
-	struct stackNode *ptr = top;
-	while(ptr != NULL)
-	{
-		printf("%p(%p)\n", ptr, ptr->next);
-		ptr = ptr->next;
-	}
-}
-
-//destroys stack and frees memory
+// Destroys/frees stack from top-down
 void destroy(struct stackNode *top)
 {
 	struct stackNode *behindTop = top;
@@ -55,7 +44,7 @@ void destroy(struct stackNode *top)
 	free(top);
 }
 
-//destroys the top of the stack
+// Destroys/frees the node on top of the stack
 void pop(struct stackNode **top)
 {
 	if(*top == NULL)
@@ -72,17 +61,11 @@ void pop(struct stackNode **top)
 //returns 1 if stack is empty, returns 0 if not
 int isEmpty(struct stackNode *top)
 {
-	return (top == NULL)
+	return (top == NULL);
 }
 
-//returns size of the stack
+// Returns the index of the top of the stack plus one
 int size(struct stackNode *top)
 {
 	return (top->index)+1;
-}
-
-//displays pointer information for the top of the stack
-void peek(struct stackNode *top)
-{
-	printf("%p(%p)\n", top, top->next);
 }
