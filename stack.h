@@ -6,6 +6,7 @@ typedef struct stackNode
 {
 	//insert your data to be stored here
 	struct stackNode *next;
+	int index;
 } stackNode;
 
 //creates a new stack
@@ -13,6 +14,7 @@ struct stackNode* stack()
 {
 	struct stackNode *top = (struct stackNode*)malloc(sizeof(struct stackNode));
 	top->next = NULL;
+	top->index = 0;
 	return top;
 }
 
@@ -24,6 +26,7 @@ void push(struct stackNode **top)
 
 	struct stackNode *ptr = (struct stackNode*)malloc(sizeof(struct stackNode));
 	ptr->next = *top;
+	ptr->index = ((*top)->index) + 1;
 
 	*top = ptr;
 }
@@ -55,6 +58,9 @@ void destroy(struct stackNode *top)
 //destroys the top of the stack
 void pop(struct stackNode **top)
 {
+	if(*top == NULL)
+		return;
+	
 	struct stackNode *temp = *top;
 	if((*top)->next != NULL)
 		*top = (*top)->next;
@@ -66,21 +72,13 @@ void pop(struct stackNode **top)
 //returns 1 if stack is empty, returns 0 if not
 int isEmpty(struct stackNode *top)
 {
-	if(top->next == NULL)
-		return 1;
-	return 0;
+	return (top == NULL)
 }
 
 //returns size of the stack
 int size(struct stackNode *top)
 {
-	int count = 0;
-	while(top != NULL)
-	{
-		top = top->next;
-		count++;
-	}
-	return count;
+	return (top->index)+1;
 }
 
 //displays pointer information for the top of the stack
