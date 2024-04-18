@@ -12,7 +12,7 @@ It is meant for C in the GCC compiler, to include use ```#include "stack.h"``` a
 
 ## Examples
 
-There is a demo.c but to see a more extensive demo please see [Bookshell.c](https://github.com/coolmankijhl/bookshell.c)
+There is a ```demo.c``` file in this repo but to see a more extensive demo please see [Bookshell.c](https://github.com/coolmankijhl/bookshell.c)
 <br><br>
 
 ```c
