@@ -10,6 +10,11 @@ This project has no dependencies, you can just download the file through github 
 It is meant for C in the GCC compiler, to include use ```#include "stack.h"``` and replace the data inside ```struct stackNode``` to reflect any data you want to store within a node.
 <br><br>
 
+## Examples
+
+There is a demo.c but to see a more extensive demo please see [Bookshell.c](https://github.com/coolmankijhl/bookshell.c)
+<br><br>
+
 ```c
 struct stackNode* stack()
 ```
