@@ -13,7 +13,7 @@ It is meant for C in the GCC compiler, to include use ```#include "stack.h"``` a
 ```c
 struct stackNode* stack()
 ```
-Creates a new stack using ```malloc()```, contains ```int index``` and ```struct stack* next```, any other variables *must* be added in ```stack.h```.  
+Returns a new stack using ```malloc()```, contains ```int index``` and ```struct stack* next```, any other variables *must* be added in ```stack.h```.  
 Note: Bottom of the stack has an index of 0.<br><br>
 
 ```c
