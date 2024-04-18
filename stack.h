@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef stack_h
+#define stack_h
+
 // Node definition
 typedef struct stackNode
 {
 	int data;
-	struct stackNode *next;
+
+	struct stackNode* next;
 	int index;
 } stackNode;
 
@@ -22,8 +26,8 @@ struct stackNode* stack()
 void push(struct stackNode **top)
 {
 	struct stackNode *ptr = (struct stackNode*)malloc(sizeof(struct stackNode));
-	ptr->index = ((*top)->index) + 1;
 	ptr->next = *top;
+	ptr->index = ((*top)->index) + 1;
 
 	*top = ptr;
 }
@@ -35,34 +39,96 @@ void destroy(struct stackNode *top)
 	while(top != NULL)
 	{
 		top = top->next;
-		free(behindTop);
+		//if any data is malloc'ed or calloc'ed free it here using free((void*)behindTop->data);
 		behindTop = top;
 	}
 	free(top);
 }
 
-// Destroys/frees the node on top of the stack
-void pop(struct stackNode **top)
+// Removes and returns the node on top of the stack
+struct stackNode* pop(struct stackNode **top)
 {
 	if(*top == NULL)
-		return;
+		return NULL;
 	
 	struct stackNode *temp = *top;
 	if((*top)->next != NULL)
 		*top = (*top)->next;
 	else
 		free((*top));
-	free(temp);
+	return temp;
 }
 
-//returns 1 if stack is empty, returns 0 if not
-int isEmpty(struct stackNode *top)
+// Returns the node on top of the stack
+struct stackNode* peek(struct stackNode *top)
 {
-	return (top == NULL);
+	if(top == NULL)
+		return NULL;
+
+	return top;
 }
+
 
 // Returns the index of the top of the stack plus one
 int size(struct stackNode *top)
 {
-	return (top->index)+1;
+	if(top == NULL)
+		return 0;
+
+	int max = 0;
+	int hold;
+	struct stackNode *ptr = top;
+
+	while(ptr != NULL)
+	{
+		hold = ptr->index;
+		if(hold > max)
+			max = hold;
+		ptr = ptr->next;
+	}
+
+	return max+1;
 }
+
+// Returns the node on the bottom of the stack
+struct stackNode* bottom(struct stackNode *top)
+{
+	struct stackNode *bottom = top;
+	while(bottom->next != NULL && bottom != NULL)
+		bottom = bottom->next;
+
+	return bottom;
+}
+
+// Reverses a stack's order
+void reverse(struct stackNode **top)
+{
+	struct stackNode* prev = NULL;
+	struct stackNode* current = *top;
+	struct stackNode* next = NULL;
+
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+
+	*top = prev;
+}
+
+// Resets the indexes of the stack
+void reindex(struct stackNode **top, int max_index)
+{
+	struct stackNode* ptr = *top;
+
+	while(ptr != NULL)
+	{
+		ptr->index = max_index-1;
+		ptr = ptr->next;
+		max_index--;
+	}	
+}
+
+#endif

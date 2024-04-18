@@ -14,6 +14,7 @@ void display(struct stackNode* top)
 		printf("%d(%d, %p)%p ", ptr->index, ptr->data, ptr, ptr->next);
 		ptr = ptr->next;
 	}
+	printf("\n");
 }
 
 int main()
@@ -27,5 +28,16 @@ int main()
 	push(&top);
 	top->data = 2;
 
+	push(&top);
+	top->data = 3;
+
 	display(top);
+
+	reverse(&top);
+	display(top);
+
+	reindex(&top, size(top));
+	display(top);
+
+	destroy(top);
 }
